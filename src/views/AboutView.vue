@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-  import { NButton } from 'naive-ui'
+import { NButton } from 'naive-ui'
 
   export default defineComponent({
     components: {
