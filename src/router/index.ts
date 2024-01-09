@@ -24,6 +24,27 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/index',
+      name: 'index',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      // component: () => import('../views/IndexView.vue'),
+      redirect: '/index/system',
+      children: [
+        {
+          path: '/index/system',
+          name: 'system',
+          component: () => import('../views/SystemInfo.vue')
+        },
+        {
+          path: '/index/game',
+          name: 'game',
+          component: () => import('../views/GameInfo.vue')
+        }
+      ]
     }
   ]
 })

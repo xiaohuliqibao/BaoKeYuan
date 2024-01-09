@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { NForm,NFormItem,NInput,NButton,NTooltip } from 'naive-ui';
 const formValue = ref({
         user: {
@@ -22,9 +23,19 @@ const rules = {
         }
 }
 const onlyAllowNumber = (value: string) => !value || /^\d+$/.test(value);
+const router = useRouter();
+
 function login() {
-  console.log(`Number：${formValue.value.user.number}`);
-  console.log(`Number：${formValue.value.user.code}`);
+  if(formValue.value.user.number == '123' && formValue.value.user.code == '456'){
+    console.log("Login Success");
+    // Perform login logic here
+    // For example, redirect to another page
+    router.push('/index');
+  }
+  else
+  {
+    alert("Wrong Number or Code")
+  }
 }
 
 </script>
