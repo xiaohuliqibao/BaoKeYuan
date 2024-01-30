@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NLayout,NLayoutContent,NFlex, NButton,NCard,NProgress ,NIcon } from 'naive-ui';
+import { NLayout,NLayoutContent,NProgress ,NIcon } from 'naive-ui';
 import { HardwareChipOutline,BarcodeOutline,ServerOutline } from "@vicons/ionicons5";
 import IndexLayoutSider from '@/components/IndexLayoutSider.vue';
 
@@ -13,7 +13,7 @@ const username = 'qibao'
         <n-layout-content class="container">
           <div class="welcome-content">
             <p>Hello <b>{{ username }}</b> </p>
-            <h1>Welcome to the System Panel</h1>
+            <h1>Welcome to System Panel</h1>
           </div>
           <div class="system-content" >
             <div class="item">
