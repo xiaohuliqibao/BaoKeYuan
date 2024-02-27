@@ -43,6 +43,11 @@ const router = createRouter({
           path: '/index/game',
           name: 'game',
           component: () => import('../views/GameInfo.vue')
+        },
+        {
+          path: '/index/musicplayer',
+          name: 'musicplayer',
+          component: () => import('../views/MusicApp.vue')
         }
       ]
     }

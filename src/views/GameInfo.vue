@@ -80,20 +80,6 @@ const data = ref([
     steam_id: '555555555',
     status: 'Online',
     ban: 'true'
-  },
-  {
-    id: 6,
-    steam_name: 'Bob Johnson',
-    steam_id: '555555555',
-    status: 'Online',
-    ban: 'true'
-  },
-  {
-    id: 7,
-    steam_name: 'Jane Smith',
-    steam_id: '987654321',
-    status: 'Offline',
-    ban: 'false'
   }
 ])
 
@@ -281,6 +267,10 @@ const code = "import { h,ref,reactive  } from 'vue';"
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 30px;
+}
+
+.layout .container .game-panel .game-info .white-black-list{
+  height: 400px;
 }
 
 .layout .container .game-panel .game-info .status .status-detail{

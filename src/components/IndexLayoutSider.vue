@@ -4,7 +4,7 @@ import { NMenu, NIcon,NLayoutSider } from 'naive-ui'
 import  type { Component } from 'vue'
 import type { MenuOption } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { Apps, GameController,Construct } from '@vicons/ionicons5'
+import { Apps, GameController,Construct,MusicalNotesOutline,MusicalNotes } from '@vicons/ionicons5'
 
 const collapsed = ref(true)
 
@@ -23,9 +23,9 @@ const menuOptions: MenuOption[] = [
     icon: renderIcon(GameController)
   },
   {
-    label: () => h(RouterLink, { to: { path: '/index/config' } }, { default: () => '游戏配置' }),
-    key: 'go-game-info',
-    icon: renderIcon(Construct)
+    label: () => h(RouterLink, { to: { path: '/index/musicplayer' } }, { default: () => '音乐馆' }),
+    key: 'go-music-app',
+    icon: renderIcon(MusicalNotes)
   }
 ]
 </script>
