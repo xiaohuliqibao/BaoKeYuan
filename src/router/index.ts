@@ -54,4 +54,15 @@ const router = createRouter({
   ]
 })
 
+//增加了路由守卫，当localStorage.getItem无token时，自动跳转到登录界面
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  if (to.path === '/login' && token) {
+    next('/index')
+  }
+  if (to.path !== '/login' && !token) {
+    next('/login')
+  }
+  next()
+})
 export default router

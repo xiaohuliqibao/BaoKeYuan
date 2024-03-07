@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { h, ref } from 'vue'
-import { NMenu, NIcon,NLayoutSider } from 'naive-ui'
+import { NMenu, NIcon,NLayoutSider ,NButton} from 'naive-ui'
 import  type { Component } from 'vue'
 import type { MenuOption } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { Apps, GameController,Construct,MusicalNotesOutline,MusicalNotes } from '@vicons/ionicons5'
+import { Apps, GameController,MusicalNotes,ExitOutline } from '@vicons/ionicons5'
 
 const collapsed = ref(true)
 
@@ -28,10 +28,19 @@ const menuOptions: MenuOption[] = [
     icon: renderIcon(MusicalNotes)
   }
 ]
+
+function logout() {
+  window.localStorage.removeItem('token')
+  window.localStorage.removeItem('userInfo')
+  window.location.href = '/'
+  // window.location.reload()
+  this.$router.push('/login')
+}
 </script>
 
 <template>
   <n-layout-sider
+    class="sider-master"
     bordered
     icon-size="24"
     collapse-mode="width"
@@ -43,12 +52,43 @@ const menuOptions: MenuOption[] = [
     @expand="collapsed = false"
   >
     <n-menu class="sider-menu" :options="menuOptions" :collapsed-icon-size="22" style="margin-top: 30%;" />
+    <n-button class="sign-out" quaternary @click="logout()">
+      <n-icon class="sign-out-icon" size="25">
+        <ExitOutline />
+      </n-icon>
+    </n-button>
+    
   </n-layout-sider>
 </template>
 
 <style scoped>
+
+.sider-master{
+  display: flex;
+  flex-direction: column;
+  
+  height: 100%;
+  align-items: center;
+  justify-content: between;
+}
+
 .sider-menu {
   margin-bottom: 100px;
+}
+
+.sign-out{
+  margin: 0px 0px 10px -3px;
+}
+
+.sign-out .sign-out-icon{
+  transform: rotateY(180deg);
+}
+
+::v-deep(.n-layout-sider-scroll-container)
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 ::v-deep(.n-menu-item){

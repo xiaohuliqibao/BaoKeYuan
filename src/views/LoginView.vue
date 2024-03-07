@@ -29,11 +29,14 @@ const container = ref<any>(null)
 
 async function login() {
   try {
-    const response = await Axios.post('/api/login',{
+    const response = await Axios.post('/api/api/login',{
       number: formValue.value.user.number,
       code: formValue.value.user.code})
     console.log(response.data)
-    if(response.data.status == 'success'){
+    if(response.data.success){
+      window.localStorage.setItem('token',response.data.token)
+      window.localStorage.setItem('user',JSON.stringify(response.data.user))
+      console.log("Login Success")
       router.push('/index')
     }else
     {
