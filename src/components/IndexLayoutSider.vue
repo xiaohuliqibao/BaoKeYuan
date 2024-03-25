@@ -4,7 +4,7 @@ import { NMenu, NIcon,NLayoutSider ,NButton} from 'naive-ui'
 import  type { Component } from 'vue'
 import type { MenuOption } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { Apps, GameController,MusicalNotes,ExitOutline } from '@vicons/ionicons5'
+import { Apps, GameController,MusicalNotes,ExitOutline,ReaderOutline } from '@vicons/ionicons5'
 
 const collapsed = ref(true)
 
@@ -26,10 +26,15 @@ const menuOptions: MenuOption[] = [
     label: () => h(RouterLink, { to: { path: '/index/musicplayer' } }, { default: () => '音乐馆' }),
     key: 'go-music-app',
     icon: renderIcon(MusicalNotes)
+  },
+  {
+    label: () => h(RouterLink, { to: { path: '/index/markdown' } }, { default: () => 'MarkDown' }),
+    key: 'go-markdown',
+    icon: renderIcon(ReaderOutline)
   }
 ]
 
-function logout() {
+function logout(this: any) {
   window.localStorage.removeItem('token')
   window.localStorage.removeItem('userInfo')
   window.location.href = '/'

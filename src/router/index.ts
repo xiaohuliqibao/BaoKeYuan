@@ -48,6 +48,11 @@ const router = createRouter({
           path: '/index/musicplayer',
           name: 'musicplayer',
           component: () => import('../views/MusicApp.vue')
+        },
+        {
+          path: '/index/markdown',
+          name: 'markdown',
+          component: () => import('../views/MarkDownEditor.vue')
         }
       ]
     }

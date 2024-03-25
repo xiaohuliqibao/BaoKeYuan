@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { h,ref,reactive  } from 'vue';
+import { h,ref,onMounted  } from 'vue';
 import { NLayout,NLayoutContent, NTag,NButton,NDataTable,NCard,NTabs,NTabPane,NCode,NConfigProvider } from 'naive-ui';
-import type { DataTableColumns,DataTableBaseColumn,DataTableFilterState } from "naive-ui";
+import type { DataTableColumns } from "naive-ui";
 import IndexLayoutSider from '@/components/IndexLayoutSider.vue';
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
+import Axios from "axios";
 
-const username = localStorage.getItem("username") || "Guest";
+const username = window.localStorage.getItem("user") || "Guest";
 
 const status = ref({
   map: '运行中',
@@ -90,6 +91,23 @@ function rewClassName(row:gameUser) {
       return ''
   }
 }
+
+//一个功能将"/api/read/file"接口的数据放到file_content中,hearder中添加token
+var file_content = '';
+onMounted(async() => {
+  const response = await Axios.get('/api/api/read/file', {
+    headers: {
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJudW1iZXIiOiI5MzAzIiwiaWF0IjoxNzEwODMzMDM5LCJleHAiOjE3MTA4MzY2Mzl9.7trkGTCHU66rjVaIrWpYyon_fLkFeMsK3bzgasGJf_E'
+    },
+    params:{
+      path: '.',
+      filename: 'README.md'
+    }
+  });
+  file_content = response.data.data;
+  console.log(file_content);
+})
+
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -177,7 +195,7 @@ const code = "import { h,ref,reactive  } from 'vue';"
                     </div>
                   </n-tab-pane>
                   <n-tab-pane name="the beatles" tab="Server.conf">
-                    Hey Jude
+                    {{file_content}}
                   </n-tab-pane>
                   <n-tab-pane name="MasterConf" tab="Master.conf">
                     七里香
